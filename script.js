@@ -17,3 +17,38 @@ function addData() {
   if (state.seriesA.length > state.maxPoints) state.seriesA.shift();
   if (state.seriesB.length > state.maxPoints) state.seriesB.shift();
 }
+const canvas = document.getElementById("chart");
+const ctx = canvas.getContext("2d");
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawGrid();
+  drawLine(state.seriesA, "#2563eb");
+  drawLine(state.seriesB, "#f43f5e");
+}
+
+function drawGrid() {
+  ctx.strokeStyle = "#ddd";
+  ctx.beginPath();
+  for (let i = 0; i < canvas.width; i += 50) {
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i, canvas.height);
+  }
+  for (let j = 0; j < canvas.height; j += 50) {
+    ctx.moveTo(0, j);
+    ctx.lineTo(canvas.width, j);
+  }
+  ctx.stroke();
+}
+
+function drawLine(series, color) {
+  if (series.length < 2) return;
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(0, canvas.height - series[0]);
+  for (let i = 1; i < series.length; i++) {
+    ctx.lineTo((i / series.length) * canvas.width, canvas.height - series[i]);
+  }
+  ctx.stroke();
+}
+
