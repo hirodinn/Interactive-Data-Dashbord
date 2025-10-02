@@ -74,3 +74,12 @@ function clearData() {
   draw();
 }
 
+const startBtn = document.getElementById("startBtn");
+const clearBtn = document.getElementById("clearBtn");
+
+startBtn.addEventListener("click", toggleRun);
+clearBtn.addEventListener("click", clearData);
+
+// Initial render
+draw();
+
