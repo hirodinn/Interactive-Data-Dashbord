@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Interactive Data Dashboard (Vanilla JS)</title>
+  </head>
+  <body>
+    <div class="container" id="app">
+      <header>
+        <h1>Interactive Data Dashboard — real-time simulation</h1>
+        <div class="controls">
+          <label class="muted">Dataset</label>
+          <select id="dataset-select">
+            <option value="stocks">Stock Prices (Sim)</option>
+            <option value="weather">Temperature (Sim)</option>
+          </select>
+          <button id="play" class="btn-primary">Start</button>
+          <button id="export" class="btn-ghost">Export CSV</button>
+          <label style="display: flex; align-items: center; gap: 8px">
+            <input type="checkbox" id="toggle-theme" /> Dark
+          </label>
+        </div>
+      </header>
+
+      <div class="card" id="mainCard">
+        <div id="chart-wrap">
+          <canvas id="chart"></canvas>
+          <div id="tooltip" class="tooltip" style="display: none"></div>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+
+      <aside class="side">
+        <div class="card">
+          <h3 style="margin: 0 0 10px 0">Controls</h3>
+          <div class="stat">
+            <div>Speed</div>
+            <div id="speedVal">1x</div>
+          </div>
+          <input
+            id="speed"
+            type="range"
+            min="0.2"
+            max="3"
+            step="0.1"
+            value="1"
+          />
+          <div style="height: 12px"></div>
+          <div class="stat">
+            <div>Show Series A</div>
+            <input type="checkbox" id="showA" checked />
+          </div>
+          <div class="stat">
+            <div>Show Series B</div>
+            <input type="checkbox" id="showB" checked />
+          </div>
+          <div style="height: 8px"></div>
+          <button id="clear" class="btn-ghost">Clear Data</button>
+        </div>
+
+        <div class="card">
+          <h3 style="margin: 0 0 10px 0">Stats</h3>
+          <div class="stat">
+            <div>Points</div>
+            <div id="pointsCount">0</div>
+          </div>
+          <div class="stat">
+            <div>Latest A</div>
+            <div id="latestA">—</div>
+          </div>
+          <div class="stat">
+            <div>Latest B</div>
+            <div id="latestB">—</div>
+          </div>
+        </div>
+      </aside>
+
+      <footer class="muted">
+        Local simulation — no backend. Built with HTML, CSS & JavaScript.
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
