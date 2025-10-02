@@ -52,3 +52,25 @@ function drawLine(series, color) {
   ctx.stroke();
 }
 
+let interval;
+
+function toggleRun() {
+  state.running = !state.running;
+  if (state.running) {
+    interval = setInterval(step, state.speed);
+  } else {
+    clearInterval(interval);
+  }
+}
+
+function step() {
+  addData();
+  draw();
+}
+
+function clearData() {
+  state.seriesA = [];
+  state.seriesB = [];
+  draw();
+}
+
